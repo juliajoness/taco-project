@@ -1,25 +1,37 @@
 class UsersController < ApplicationController
-    def index 
-        render json: User.all 
+    def index
+        users = User.all
+        render json: users
     end
 
     def show 
         user_found = User.find_by(id: params[:id])
         render json: user_found
     end
-
+    
     def create
-        user_new = User.create(new_user_params)
-        if user_new.valid?
-            render json: user_new.order
-        else
-            render json: {"errors": "user not found"}
-        end
+        new_user = User.create( 
+            username: params[:username],
+            email: params[:email],
+            
+            password: params[:password],
+        )
+        render json: new_user
     end
 
-    private
-
-    def new_user_params
-        params.permit(:time, :taco_id, :user_id)
+    def update
+        user = User.find_by(id: params[:id])
+        user.username = params[:username]
+        user.email = params[:email]
+        user.password = params[:password]
+        user.save
+        render json: user
     end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        head :no_content
+    end
+
 end
