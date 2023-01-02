@@ -6,15 +6,15 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.destroy_all
-Taco.destroy_all
 Order.destroy_all
+Taco.destroy_all
+User.destroy_all
 
-u1 = User.create(name: "Kenny", allergies: "Gluten, peanuts, avocado")
-u2 = User.create(name: "Chef")
-u3 = User.create(name: "Eric", allergies: "Cheese")
-u4 = User.create(name: "Stan", allergies: "Happiness")
-u5 = User.create(name: "Adam", allergies: "Luke, Leia")
+u1 = User.create(username: "Kenny1", email: "kenny1@lovetaco.com", password: "kenny123")
+u2 = User.create(username: "Chef2", email:"chef2@lovetaco.com", password: "chef123")
+u3 = User.create(username: "Eric3", email: "eric3@lovetaco.com", password: "eric123")
+u4 = User.create(username: "Stan4", email: "stan4@lovetaco.com", password: "stan123")
+u5 = User.create(username: "Adam5", email: "adam5@lovetaco.com", password: "adam123")
 
 puts "Users done"
 
