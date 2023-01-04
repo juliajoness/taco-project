@@ -1,14 +1,17 @@
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
 import React, {useState, useEffect} from 'react';
 import {Switch, Route} from 'react-router-dom'
 import Menu from './Components/Menu';
-import MenuContainer from './Components/MenuContainer';
 import Home from './Components/Home';
+import MenuContainer from './Components/MenuContainer';
+import Login from './Components/Login';
+import Order from './Components/Order';
+
 
 function App() {
 const [taco, setTaco] = useState([])
 const [user, setUser] = useState([])
-console.log(user)
 
 useEffect(() => {
   fetch('/tacos')
@@ -16,23 +19,10 @@ useEffect(() => {
   .then(taco => setTaco(taco));
 }, [])
 
-useEffect(() => {
-  fetch('/users')
-  .then((r) => r.json())
-  .then(user => setUser(user));
-}, [])
-
 
   return (
     <div>
-      <MenuContainer
-          taco={taco}
-          user={user}
-          setTaco={setTaco}
-          
-          
-        />  
-    {/* <Switch>
+    <Switch>
       <Route exact path="/">
         <Home/>  
       </Route>
@@ -40,17 +30,23 @@ useEffect(() => {
       <Route exact path="/tacos">
         <MenuContainer
           taco={taco}
-          user={user}
           setTaco={setTaco}
-          
-          
-        />  
+          />  
       </Route>
+
+      <Route exact path="/users" >
+        <Login />
+      </Route>
+
+      <Route exact path="orders">
+        <Order />
+      </Route>
+        
         
 
 
       
-    </Switch> */}
+    </Switch>
     </div>
   );
 }
