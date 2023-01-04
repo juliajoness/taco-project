@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::API
-    # can you see me?
+    include ActionController::Cookies
+
 end
