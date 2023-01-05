@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :user_not_found
 rescue_from ActiveRecord::RecordInvalid, with: :user_unable_to_create
 
-before_action :user_find_method, except: [:index, :create]
+# before_action :user_find_method, except: [:index, :create]
     
     def index
         users = User.all
@@ -18,9 +18,10 @@ before_action :user_find_method, except: [:index, :create]
     def create
         new_user = User.new(user_create_params)
         
-        if new_user.valid?create
+        if new_user.valid?
             new_user.save
-            render json: new_user
+            session[:user_id] = new_user.id
+            render json: new_user, status: :ok
         else
             render json: { error: new_user.errors.full_messages}
         end
@@ -28,14 +29,15 @@ before_action :user_find_method, except: [:index, :create]
 
     def update
         user = User.find_by(id: params[:id])
-        if user(user_update_params)
+        if user
+            user.update(user_update_params)
         # user.username = params[:username]
         # user.email = params[:email]
         # user.password = params[:password]
         # user.save
-        render json: user
+        render json: user, status: :accepted
         else
-            render json: { error: user.errors.full_messages}
+            render json: { error: "user not found"}
         end
     end
 
@@ -45,16 +47,16 @@ before_action :user_find_method, except: [:index, :create]
         head :no_content
     end
 
-    def createUser
-        new_user = User.new(user_create_params)
+    # def createUser
+    #     new_user = User.new(user_create_params)
         
-        if new_user.valid?create
-            new_user.save
-            render json: new_user
-        else
-            render json: { error: new_user.errors.full_messages}
-        end
-    end
+    #     if new_user.valid?create
+    #         new_user.save
+    #         render json: new_user
+    #     else
+    #         render json: { error: new_user.errors.full_messages}
+    #     end
+    # end
  
     private 
 

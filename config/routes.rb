@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/orders", to: "orders#create"
 
   resources :users, except: [:index]
+  post "/users", to: "users#create"
 
   get "/tacos", to: "tacos#index"
   get "/tacos/:id", to: "tacos#show"
@@ -20,6 +21,6 @@ Rails.application.routes.draw do
 
   # get "/signup", to: "session#create"
 
-  post "/signup", to: "user#createUser"
+  # post "/signup", to: "signup#create"
 
 end

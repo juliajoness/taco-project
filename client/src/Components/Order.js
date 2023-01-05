@@ -5,28 +5,28 @@ import { Form, Input, Container } from "semantic-ui-react";
 function Order({ taco }) {
   console.log(taco);
 
-  // const [name, setName] = useState('')
-  // const [tacoName, setTacoName] = useState('')
-  // const [ingredients, setIngredients] = useState('')
+  const [name, setName] = useState('')
+  const [tacoName, setTacoName] = useState('')
+  const [ingredients, setIngredients] = useState('')
 
-  // const newOrders = {
-  //     name: name,
-  //     tacoName: tacoName,
-  //     ingredients: ingredients
-  //     }
-  // function handleSubmit (e){
-  //     e.preventDefault()
-  //     fetch("/orders", {
-  //         method: 'POST',
-  //         headers: {'Content-Type': 'application/json'},
-  //         body: JSON.stringify(newOrders)
-  //         })
-  //         .then((r) => r.json())
-  //         .then((data) => {
-  //         (console.log(data))
-  //         })
+  const newOrders = {
+      name: name,
+      tacoName: tacoName,
+      ingredients: ingredients
+      }
+  function handleSubmit (e){
+      e.preventDefault()
+      fetch("/orders", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(newOrders)
+          })
+          .then((r) => r.json())
+          .then((data) => {
+          (console.log(data))
+          })
 
-  // }
+  }
   return (
     <div>
       <div className="ui form">
