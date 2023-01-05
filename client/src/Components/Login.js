@@ -2,8 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-function Login({updateUser}) {
+function Login({updateUser, handleSignupUpdate}) {
+
     const [ loggedInUser, setLoggedInUser ] = useState(null)
     // const [user, setUser] = useState([])
 
@@ -17,41 +19,41 @@ function Login({updateUser}) {
         },[])
 
 
-const [userToLogin, updateUserLoginInfo] = useState(
-    {
-        username: '',
-        password: ''
-    }
-)
-console.log("State of userToLogin",userToLogin)
-
-
-const handleOnChangeUserToLogin =(sythE)=>{
-    // console.log(sythE)
-    updateUserLoginInfo({ ...userToLogin ,[sythE.target.name]: sythE.target.value })
-}
-
-const handleLoginSubmit = (sythE)=>{
-    sythE.preventDefault()
-    
-    fetch('/login',
-    {
-        method:"POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify( userToLogin )
-        
-    }
+    const [userToLogin, updateUserLoginInfo] = useState(
+        {
+            username: '',
+            password: ''
+        }
     )
-    .then((r) => r.json())
-    .then(hopfullyAUser => {
-        updateUser(hopfullyAUser) //
-        // history.push(`/users/${username.id}`)
-        setLoggedInUser(hopfullyAUser)
-        
-    })
-    
+    console.log("State of userToLogin",userToLogin)
+
+
+    const handleOnChangeUserToLogin =(sythE)=>{
+        // console.log(sythE)
+        updateUserLoginInfo({ ...userToLogin ,[sythE.target.name]: sythE.target.value })
     }
-    const handleLogOut = ({setLoggedInUser}) => {
+
+    const handleLoginSubmit = (sythE)=>{
+        sythE.preventDefault()
+        
+        fetch('/login',
+        {
+            method:"POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify( userToLogin )
+            
+        }
+        )
+        .then((r) => r.json())
+        .then(hopfullyAUser => {
+            updateUser(hopfullyAUser) //
+            // history.push(`/users/${username.id}`)
+            setLoggedInUser(hopfullyAUser)
+            
+        })
+        
+    }
+    const handleLogOut = () => {
     
         fetch('/logout', {method: 'DELETE'})
         .then(r => {
@@ -108,6 +110,10 @@ const handleLoginSubmit = (sythE)=>{
         <button className ="ui primary labeled icon button" type="submit">        
         <i className= "hand point right outline"></i>
         Signup
+        </button>
+        <button className ="ui primary labeled icon button" as={Link} to={"/"}>
+        <i className= "hand point right outline"></i>
+        blab
         </button>
     
         </NavLink>
