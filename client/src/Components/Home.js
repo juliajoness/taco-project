@@ -1,10 +1,10 @@
 import React from 'react'
-// import videoBg from '../Components/taco.mp4'
+import videoBg from '../assets/taco.mp4'
 
 function Home() {
     return (
-        <div>
-            {/* <video src={videoBg} autoPlay loop muted /> */}
+        <div className='homepage'>
+            <video src={videoBg} autoPlay loop muted />
         
         </div>
     )

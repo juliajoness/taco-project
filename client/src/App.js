@@ -23,6 +23,22 @@ useEffect(() => {
   .then(taco => setTaco(taco));
 }, [])
 
+// const [userArray, setUpdateSignup] = useEffect([])
+// useEffect(() => {
+//     fetch(`/users`)
+//         .then(response => response.json())
+//         .then(setUpdateSignup)
+// })
+
+// const handleSignupUpdate(updateSignup){
+//   const updateSignup = userArray.map((u) =>
+//       u.id === updateSignup.id? updateSignup : u
+//   )
+//   setNewUserSignup(updateSignup)
+// }
+
+
+
 
   return (
     <div>
@@ -39,19 +55,24 @@ useEffect(() => {
           />  
       </Route>
 
+      {
+        loggedInUser ?
       <Route exact path="/users" >
         <Login 
         updateUser= {updateUser}
         loggedInUser= {loggedInUser}
         setLoggedInUser= {setLoggedInUser}/>
       </Route>
+      :
+      <Route exact path="/signupupdate"
+      }
 
       <Route exact path="/orders">
         <Order taco= {taco}/>
       </Route>
         
       <Route exact path="/signup">
-        <Signup setLoggedInUser= {setLoggedInUser}/>
+        <Signup setLoggedInUser= {setLoggedInUser} />
       </Route>
         
 

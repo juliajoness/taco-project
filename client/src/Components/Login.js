@@ -1,15 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Navbar from './Navbar'
 import { NavLink } from 'react-router-dom'
-import Signup from './Signup'
 import { useHistory } from 'react-router-dom'
 
-function Login({updateUser, loggedInUser, setLoggedInUser}) {
-    // const [ loggedInUser, setLoggedInUser ] = useState(null)
+function Login({updateUser}) {
+    const [ loggedInUser, setLoggedInUser ] = useState(null)
     // const [user, setUser] = useState([])
 
-    console.log(loggedInUser)
     useEffect(
         () =>{
             fetch("/userInSession")
@@ -57,10 +54,10 @@ const handleLoginSubmit = (sythE)=>{
     const handleLogOut = ({setLoggedInUser}) => {
     
         fetch('/logout', {method: 'DELETE'})
-        .then(r => r.json())
-        .then( deleteResponse =>{
-            
+        .then(r => {
+            if(r.ok){
             setLoggedInUser(null)
+            }
         })
 
     }
