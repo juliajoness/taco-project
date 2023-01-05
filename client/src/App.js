@@ -13,6 +13,7 @@ function App() {
 const [taco, setTaco] = useState([])
 const [user, setUser] = useState(null)
 const [ loggedInUser, setLoggedInUser ] = useState(null)
+console.log(taco)
 
 const updateUser = (user) => setUser(user)
 
@@ -46,7 +47,7 @@ useEffect(() => {
       </Route>
 
       <Route exact path="/orders">
-        <Order />
+        <Order taco= {taco}/>
       </Route>
         
       <Route exact path="/signup">
