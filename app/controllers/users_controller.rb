@@ -44,6 +44,17 @@ before_action :user_find_method, except: [:index, :create]
         user.destroy
         head :no_content
     end
+
+    def createUser
+        new_user = User.new(user_create_params)
+        
+        if new_user.valid?create
+            new_user.save
+            render json: new_user
+        else
+            render json: { error: new_user.errors.full_messages}
+        end
+    end
  
     private 
 

@@ -1,10 +1,43 @@
 import React from 'react'
-
+import { NavLink } from 'react-router-dom'
+import {Menu, Segment} from 'semantic-ui-react'
 function Navbar() {
+    
+
     return (
-        <div>
-            hi
-        </div>
+
+        <Segment >
+        <Menu pointing secondary>
+        <Menu.Item>
+        <NavLink className="button" role="button" exact to="/">
+        Home
+        </NavLink>
+        </Menu.Item>
+        
+        <Menu.Item>
+        <NavLink className="button" role="button" exact to="/tacos">
+        Menu
+        </NavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+        <NavLink className="button" role="button" exact to="/orders">
+        Place Order
+        </NavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+        <NavLink className="button" role="button" exact to="/users">
+        Login
+        </NavLink>
+        </Menu.Item>
+
+        </Menu>
+        </Segment>
+        
+       
+
+        
     )
 }
 

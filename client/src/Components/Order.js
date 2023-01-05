@@ -37,6 +37,7 @@ function Order() {
             <Input placeholder='Full name' />
             </Form.Field>
         </Form>
+        <h2> im here</h2>
         </Container>
         <h1>hi</h1>
         </div>

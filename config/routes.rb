@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   post "/tacos", to: "tacos#create"
 
   post "/login", to: "session#create"
-  post "/userInSessions", to: "session#get_logged_in_user"
+  get "/userInSession", to: "session#get_logged_in_user"
 
   delete "/logout", to: "session#destroy"
+
+  # get "/signup", to: "session#create"
+
+  post "/signup", to: "user#createUser"
+
 end
