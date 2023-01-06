@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
+import videoBg from '../assets/taco.mp4'
+
 
 function Login({updateUser, handleSignupUpdate, updateUserLoginInfo, userToLogin, handleLoginSubmit}) {
 
@@ -66,7 +68,7 @@ function Login({updateUser, handleSignupUpdate, updateUserLoginInfo, userToLogin
 
     return (
     <div className ="page-login">
-    <div className ="ui centered grid container">
+    <div className ="ui grid container">
     <div className ="ten wide column">
     <div className ="ui fluid card">
     <div className ="content">
@@ -119,10 +121,12 @@ function Login({updateUser, handleSignupUpdate, updateUserLoginInfo, userToLogin
         </NavLink>
     </form>
     </div>
-    
     </div>
 </div>
+<div>
+    <video src={videoBg} autoPlay loop muted className='homeImage'/>
 
+</div>
 </div>
 </div>
 

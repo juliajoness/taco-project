@@ -8,9 +8,10 @@ function Navbar() {
 
         <Segment >
         <Menu pointing secondary>
+        
         <Menu.Item>
-        <NavLink className="button" role="button" exact to="/">
-        Home
+        <NavLink className="button" role="button" exact to="/users">
+         Home
         </NavLink>
         </Menu.Item>
         
@@ -26,14 +27,9 @@ function Navbar() {
         </NavLink>
         </Menu.Item>
 
-        <Menu.Item>
-        <NavLink className="button" role="button" exact to="/users">
-        Login
-        </NavLink>
-        </Menu.Item>
 
         <Menu.Item>
-        <NavLink className="button" role="button" exact to="/profile">
+        <NavLink className="button" role="button" exact to="/">
         Profile
         </NavLink>
         </Menu.Item>

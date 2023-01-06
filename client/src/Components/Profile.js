@@ -1,9 +1,11 @@
+import { useReducer } from "react"
 
 
-function Profile (){
+function Profile ({userToLogin}){
     return (
         <div>
-            <h2>Profile</h2>
+            <h2>{userToLogin.email}</h2>
+            <p>PROFILE</p>
         </div>
     )
 }

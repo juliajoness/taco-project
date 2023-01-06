@@ -15,15 +15,33 @@ function App() {
   const [taco, setTaco] = useState([]);
   const [user, setUser] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  console.log(loggedInUser);
+  const [orders, setOrders] = useState([]);
+  // console.log(loggedInUser);
 
   const updateUser = (user) => setUser(user);
+
+
+  useEffect(() => {
+    fetch("/orders")
+      .then((r) => r.json())
+      .then((orders) => setOrders(orders));
+  }, []);
 
   useEffect(() => {
     fetch("/tacos")
       .then((r) => r.json())
       .then((taco) => setTaco(taco));
   }, []);
+
+  useEffect( () => {
+    if( !user ) {
+      fetch("/users").then((r) => {
+        if(r.ok) {
+          r.json().then (setUser)
+        }
+      })
+      }
+  })
 
   // const [userArray, setUpdateSignup] = useEffect([])
   // useEffect(() => {
@@ -95,7 +113,7 @@ const handleLoginSubmit = (sythE)=>{
           </Route>
 
         <Route exact path="/orders">
-          <Order taco={taco} />
+          <Order taco={taco} orders = {orders} />
         </Route>
 
         <Route exact path="/signup">
@@ -103,7 +121,7 @@ const handleLoginSubmit = (sythE)=>{
         </Route>
 
         <Route exact path="/profile">
-          <Profile />  
+          <Profile userToLogin = {userToLogin} />  
         </Route>
       </Switch>
     </div>
