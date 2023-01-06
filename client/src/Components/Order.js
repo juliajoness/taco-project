@@ -33,7 +33,7 @@ function Order({ taco }) {
         <div className="field">
               <label>Select Taco</label>
               <select multiple="" className="ui fluid search dropdown">
-                <option value="">Holy Guacemole</option>
+                <option value="">Holy Guacamole</option>
                 <option value="">Taco Tornado</option>
                 <option value="">Burrito Bus</option>
                 <option value="">Captain Jack Taco</option>

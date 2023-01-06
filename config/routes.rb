@@ -19,8 +19,6 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "session#destroy"
 
-  # get "/signup", to: "session#create"
-
-  # post "/signup", to: "signup#create"
+  get "/profile", to: "profile#index"
 
 end

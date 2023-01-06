@@ -1,29 +1,29 @@
-import { useEffect } from "react"
+import {Form} from "semantic-ui-react"
+import React, { useState, useEffect } from "react";
 
 // function SignupUpdate(){
 
-    // const [newUserName, setNewUserName] = useState('')
-    // const [newEmail, setNewEmail] = useState('')
-    // const [newPassword, setNewPassword] = useState('')
+//     const [newUserName, setNewUserName] = useState('')
+//     const [newEmail, setNewEmail] = useState('')
+//     const [newPassword, setNewPassword] = useState('')
 
-    // const updatedSignup ={
-    //     newUserName,
-    //     newEmail,
-    //     newPassword
-    // }
-    // function handleUpdateSubmit(e){
-    //     e.preventDefault()
-    //     fetch(`/users/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //     },
-    //         body: JSON.stringify(updatedSignup)
-    //     })
-    //        .then(res => res.json())
-    //        .then(data => {
-    // }
-    
+//     const updatedSignup ={
+//         newUserName,
+//         newEmail,
+//         newPassword
+//     }
+//     function handleUpdateSubmit(e){
+//         e.preventDefault()
+//         fetch(`/users/${id}`, {
+//             method: 'PATCH',
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(updatedSignup)
+//         })
+//            .then(res => res.json())
+//            .then(data => {})
+//     }
 //     return(
 //         <div>
 //             <Form onSubmit={handleSignupSubmit}>
