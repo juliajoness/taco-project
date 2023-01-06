@@ -1,8 +1,6 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { NavLink, Link, useHistory } from 'react-router-dom'
+
 
 function Login({updateUser, user}) {
 
@@ -114,10 +112,6 @@ function Login({updateUser, user}) {
         <i className= "hand point right outline"></i>
         Signup
         </button>
-        <button className ="ui primary labeled icon button" as={Link} to={"/"}>
-        <i className= "hand point right outline"></i>
-        blab
-        </button>
     
         </NavLink>
     {/* </form> */}
@@ -134,11 +128,3 @@ function Login({updateUser, user}) {
 }
 
 export default Login;
-
-
-
-
-
-
-
-

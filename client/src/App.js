@@ -18,8 +18,9 @@ function App() {
   //console.log(loggedInUser);
 
   const updateUser = (user) => setUser(user);
+  console.log(user)
 
-  console.log('user', user)
+  console.log("user", user);
 
   useEffect(() => {
     fetch("/tacos")
@@ -41,6 +42,18 @@ function App() {
   //   setNewUserSignup(updateSignup)
   // }
 
+  function changeProfileState(changedProfileObj) {
+    const changedUserArray = [...user];
+    const index = changedUserArray.findIndex(
+      (p) => p.id === changedProfileObj.profile_id
+    );
+    const newUserArray = changedUserArray[index].user.map((r) =>
+      r.id === changedProfileObj.id ? changedProfileObj : r
+    );
+    changedUserArray[index].user = newUserArray;
+    setUser(changedUserArray);
+  }
+
   return (
     <div>
       <Navbar />
@@ -53,23 +66,22 @@ function App() {
           <MenuContainer taco={taco} setTaco={setTaco} />
         </Route>
 
-        
-          <Route exact path="/users">
-            <Login
-              user = {user}
-              updateUser={updateUser}
-              //loggedInUser={loggedInUser}
-              //setLoggedInUser={setUser}
-              // handleSignupUpdate={handleSignupUpdate}
-            />
-          </Route>
-        
-          <Route exact path="/signupupdate" >
-            {/* <SignupUpdate/> */}
-          </Route>
+        <Route exact path="/users">
+          <Login
+            user={user}
+            updateUser={updateUser}
+            //loggedInUser={loggedInUser}
+            //setLoggedInUser={setUser}
+            // handleSignupUpdate={handleSignupUpdate}
+          />
+        </Route>
+
+        <Route exact path="/signupupdate">
+          {/* <SignupUpdate/> */}
+        </Route>
 
         <Route exact path="/orders">
-          <Order taco={taco} />
+          <Order taco={taco} user={user} />
         </Route>
 
         <Route exact path="/signup">
@@ -77,7 +89,12 @@ function App() {
         </Route>
 
         <Route exact path="/profile">
-          <Profile user={user} />  
+          <Profile
+            user={user}
+            setUser={setUser}
+            changeProfileState={changeProfileState}
+            updateUser={updateUser}
+          />
         </Route>
       </Switch>
     </div>
