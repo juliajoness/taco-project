@@ -32,6 +32,12 @@ function Navbar() {
         </NavLink>
         </Menu.Item>
 
+        <Menu.Item>
+        <NavLink className="button" role="button" exact to="/profile">
+        Profile
+        </NavLink>
+        </Menu.Item>
+
         </Menu>
         </Segment>
         

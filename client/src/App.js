@@ -38,6 +38,34 @@ function App() {
   //   )
   //   setNewUserSignup(updateSignup)
   // }
+  const [userToLogin, updateUserLoginInfo] = useState(
+    {
+        username: '',
+        password: ''
+    }
+)
+console.log("State of userToLogin",userToLogin)
+
+const handleLoginSubmit = (sythE)=>{
+  sythE.preventDefault()
+  
+  fetch('/login',
+  {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify( userToLogin )
+      
+  }
+  )
+  .then((r) => r.json())
+  .then(hopfullyAUser => {
+      updateUser(hopfullyAUser) //
+      // history.push(`/users/${username.id}`)
+      setLoggedInUser(hopfullyAUser)
+      
+  })
+  
+}
 
   return (
     <div>
@@ -54,7 +82,8 @@ function App() {
         
           <Route exact path="/users">
             <Login
-              updateUser={updateUser}
+              userToLogin={userToLogin}
+              updateUserLoginInfo={updateUserLoginInfo}
               loggedInUser={loggedInUser}
               setLoggedInUser={setLoggedInUser}
               // handleSignupUpdate={handleSignupUpdate}

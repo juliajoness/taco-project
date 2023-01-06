@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
-function Login({updateUser, handleSignupUpdate}) {
+function Login({updateUser, handleSignupUpdate, updateUserLoginInfo, userToLogin, handleLoginSubmit}) {
 
     const [ loggedInUser, setLoggedInUser ] = useState(null)
     // const [user, setUser] = useState([])
@@ -19,13 +19,13 @@ function Login({updateUser, handleSignupUpdate}) {
         },[])
 
 
-    const [userToLogin, updateUserLoginInfo] = useState(
-        {
-            username: '',
-            password: ''
-        }
-    )
-    console.log("State of userToLogin",userToLogin)
+    // const [userToLogin, updateUserLoginInfo] = useState(
+    //     {
+    //         username: '',
+    //         password: ''
+    //     }
+    // )
+    // console.log("State of userToLogin",userToLogin)
 
 
     const handleOnChangeUserToLogin =(sythE)=>{
@@ -33,26 +33,26 @@ function Login({updateUser, handleSignupUpdate}) {
         updateUserLoginInfo({ ...userToLogin ,[sythE.target.name]: sythE.target.value })
     }
 
-    const handleLoginSubmit = (sythE)=>{
-        sythE.preventDefault()
+    // const handleLoginSubmit = (sythE)=>{
+    //     sythE.preventDefault()
         
-        fetch('/login',
-        {
-            method:"POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify( userToLogin )
+    //     fetch('/login',
+    //     {
+    //         method:"POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify( userToLogin )
             
-        }
-        )
-        .then((r) => r.json())
-        .then(hopfullyAUser => {
-            updateUser(hopfullyAUser) //
-            // history.push(`/users/${username.id}`)
-            setLoggedInUser(hopfullyAUser)
+    //     }
+    //     )
+    //     .then((r) => r.json())
+    //     .then(hopfullyAUser => {
+    //         updateUser(hopfullyAUser) //
+    //         // history.push(`/users/${username.id}`)
+    //         setLoggedInUser(hopfullyAUser)
             
-        })
+    //     })
         
-    }
+    // }
     const handleLogOut = () => {
     
         fetch('/logout', {method: 'DELETE'})
@@ -98,24 +98,24 @@ function Login({updateUser, handleSignupUpdate}) {
         <label>Password</label>
         <input onChange={handleOnChangeUserToLogin} type="password" name="password" placeholder="Password"/>
         </div>
-        <button className ="ui primary labeled icon button" type="submit">
-        <i className ="unlock alternate icon"></i>
-        Login
-        </button>
+        
+        <NavLink exact to="profile">
+            <button className ="ui primary labeled icon button" type="submit">
+            <i className ="unlock alternate icon"></i>
+            Login
+            </button>
+        </NavLink>
+        
         <button onClick={handleLogOut} className ="ui primary labeled icon button" type="submit">
         <i className ="unlock alternate icon"></i>
         Logout
         </button>
+        
         <NavLink className="button" role="button" exact to="/signup">
-        <button className ="ui primary labeled icon button" type="submit">        
-        <i className= "hand point right outline"></i>
-        Signup
-        </button>
-        <button className ="ui primary labeled icon button" as={Link} to={"/"}>
-        <i className= "hand point right outline"></i>
-        blab
-        </button>
-    
+            <button className ="ui primary labeled icon button" type="submit">        
+            <i className= "hand point right outline"></i>
+            Signup
+            </button>
         </NavLink>
     </form>
     </div>
