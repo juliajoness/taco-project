@@ -9,6 +9,7 @@ import Order from "./Components/Order";
 import Navbar from "./Components/Navbar";
 import Signup from "./Components/Signup";
 import SignupUpdate from "./Components/SignupUpdate";
+import Profile from "./Components/Profile";
 
 function App() {
   const [taco, setTaco] = useState([]);
@@ -24,19 +25,19 @@ function App() {
       .then((taco) => setTaco(taco));
   }, []);
 
-  const [userArray, setUpdateSignup] = useEffect([])
-  useEffect(() => {
-      fetch(`/users`)
-          .then(response => response.json())
-          .then(setUpdateSignup)
-  })
+  // const [userArray, setUpdateSignup] = useEffect([])
+  // useEffect(() => {
+  //     fetch(`/users`)
+  //         .then(response => response.json())
+  //         .then(setUpdateSignup)
+  // })
 
-  const handleSignupUpdate=(updateSignup)=>{
-    const updateSignup = userArray.map((u) =>
-        u.id === updateSignup.id? updateSignup : u
-    )
-    setNewUserSignup(updateSignup)
-  }
+  // const handleSignupUpdate=(updateSignup)=>{
+  //   const updateSignup = userArray.map((u) =>
+  //       u.id === updateSignup.id? updateSignup : u
+  //   )
+  //   setNewUserSignup(updateSignup)
+  // }
 
   return (
     <div>
@@ -56,7 +57,7 @@ function App() {
               updateUser={updateUser}
               loggedInUser={loggedInUser}
               setLoggedInUser={setLoggedInUser}
-              handleSignupUpdate={handleSignupUpdate}
+              // handleSignupUpdate={handleSignupUpdate}
             />
           </Route>
         
@@ -70,6 +71,10 @@ function App() {
 
         <Route exact path="/signup">
           <Signup setLoggedInUser={setLoggedInUser} />
+        </Route>
+
+        <Route exact path="/profile">
+          <Profile />  
         </Route>
       </Switch>
     </div>
