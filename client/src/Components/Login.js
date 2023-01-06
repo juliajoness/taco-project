@@ -4,19 +4,21 @@ import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
-function Login({updateUser, handleSignupUpdate}) {
+function Login({updateUser, user}) {
 
-    const [ loggedInUser, setLoggedInUser ] = useState(null)
     // const [user, setUser] = useState([])
 
-    useEffect(
-        () =>{
-            fetch("/userInSession")
-            .then(response => response.json())
-            .then(userLoggedIn => {
-                setLoggedInUser(userLoggedIn)
-            })
-        },[])
+    // useEffect(
+    //     () =>{
+    //         fetch("/userInSession")
+    //         .then(response => {
+    //             if(response.ok) {
+    //                 response.json().then(userLoggedIn => {
+    //                     updateUser(userLoggedIn)
+    //                 })
+    //             }
+    //         })
+    //     },[])
 
 
     const [userToLogin, updateUserLoginInfo] = useState(
@@ -25,7 +27,7 @@ function Login({updateUser, handleSignupUpdate}) {
             password: ''
         }
     )
-    console.log("State of userToLogin",userToLogin)
+    
 
 
     const handleOnChangeUserToLogin =(sythE)=>{
@@ -48,7 +50,7 @@ function Login({updateUser, handleSignupUpdate}) {
         .then(hopfullyAUser => {
             updateUser(hopfullyAUser) //
             // history.push(`/users/${username.id}`)
-            setLoggedInUser(hopfullyAUser)
+            
             
         })
         
@@ -58,10 +60,10 @@ function Login({updateUser, handleSignupUpdate}) {
         fetch('/logout', {method: 'DELETE'})
         .then(r => {
             if(r.ok){
-            setLoggedInUser(null)
+                console.log('log out')
+                updateUser(null)
             }
         })
-
     }
 
     return (
@@ -71,10 +73,10 @@ function Login({updateUser, handleSignupUpdate}) {
     <div className ="ui fluid card">
     <div className ="content">
         {
-            loggedInUser ? 
+            user ? 
             
             (<>
-            <h2> Welcome {loggedInUser.username }!!! </h2>
+            <h2> Welcome {user.username }!!! </h2>
             </>)
             
             :
@@ -89,7 +91,8 @@ function Login({updateUser, handleSignupUpdate}) {
             </div>
 
         }
-    <form onSubmit={handleLoginSubmit} className ="ui form" method="POST" >
+        <div className ="ui form" >
+    {/* <form onSubmit={handleLoginSubmit} className ="ui form" method="POST" > */}
         <div className ="field">
         <label>User</label>
         <input onChange={handleOnChangeUserToLogin} type="text" name="username" placeholder="User"/>
@@ -98,7 +101,7 @@ function Login({updateUser, handleSignupUpdate}) {
         <label>Password</label>
         <input onChange={handleOnChangeUserToLogin} type="password" name="password" placeholder="Password"/>
         </div>
-        <button className ="ui primary labeled icon button" type="submit">
+        <button onClick= {handleLoginSubmit} className ="ui primary labeled icon button" type="submit">
         <i className ="unlock alternate icon"></i>
         Login
         </button>
@@ -117,7 +120,8 @@ function Login({updateUser, handleSignupUpdate}) {
         </button>
     
         </NavLink>
-    </form>
+    {/* </form> */}
+    </div>
     </div>
     
     </div>

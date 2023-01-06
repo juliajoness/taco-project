@@ -13,11 +13,13 @@ import Profile from "./Components/Profile";
 
 function App() {
   const [taco, setTaco] = useState([]);
-  const [user, setUser] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  console.log(loggedInUser);
+  const [user, setUser] = useState(false);
+  //const [loggedInUser, setLoggedInUser] = useState(null);
+  //console.log(loggedInUser);
 
   const updateUser = (user) => setUser(user);
+
+  console.log('user', user)
 
   useEffect(() => {
     fetch("/tacos")
@@ -54,9 +56,10 @@ function App() {
         
           <Route exact path="/users">
             <Login
+              user = {user}
               updateUser={updateUser}
-              loggedInUser={loggedInUser}
-              setLoggedInUser={setLoggedInUser}
+              //loggedInUser={loggedInUser}
+              //setLoggedInUser={setUser}
               // handleSignupUpdate={handleSignupUpdate}
             />
           </Route>
@@ -70,11 +73,11 @@ function App() {
         </Route>
 
         <Route exact path="/signup">
-          <Signup setLoggedInUser={setLoggedInUser} />
+          <Signup setLoggedInUser={setUser} />
         </Route>
 
         <Route exact path="/profile">
-          <Profile />  
+          <Profile user={user} />  
         </Route>
       </Switch>
     </div>
